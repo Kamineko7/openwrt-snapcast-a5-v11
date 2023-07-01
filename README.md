@@ -100,3 +100,18 @@ Configure snapclient and hope for the best:
 
 # Upgrading from older OpenWrt version
 Use the supplied sysupgrade file.
+
+# Future and FAQ
+
+## Snapclient version is only 0.26.0
+This is the latest version I was able to build for now - seems that the newest version needs C++17 stuff that I'm not able to build for 18.06.9 image. For now, version 0.27.0 doesn't have any important client fixes.
+
+## OpenWrt 18.06.9 is not supported
+This is the last version "officially" supported on A5-V11 - there is a chance that version 19 could also work - right now I'm not working on that. Please don't expose this device to the Internet.
+
+## I want to try to build it myself
+I plan to write down complete instructions, for now I will just mark down some stuff that I had to fix:
+
+Build system is Ubuntu 22.04 - use SnapOS instructions - but checkout the commit 9763d9a to build older version.
+Build problem fixes: https://git.freifunk-franken.de/mirror/openwrt/commit/a1ee0ebbd8e9927a65c5d1e0db497dd118d559a6
+Use boost Makefile from OpenWrt version 21 and up - otherwise snapcast build will fail because the boost in 18.06.9 is too old. 
