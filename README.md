@@ -12,7 +12,7 @@ Target OpenWrt version: 18.06.9
 # Initial setup (original firmware)
 Based on instructions here: https://github.com/ozayturay/OpenWrt-A5-V11
 
-Use a flash drive formatted to FAT32, copy uboot256 and firmware file there. Plug the flash drive to the mini router and connect to it's WiFi network. Telnet to 192.168.100.1 (you need to install telnet on newer Windows).
+Use a flash drive formatted to FAT32, copy uboot256 and firmware file (must end in factory) there. Plug the flash drive to the mini router and connect to it's WiFi network. Telnet to 192.168.100.1 (you need to install telnet on newer Windows).
 Credentials are admin/admin.
 
 Run these commands, one by one:
@@ -20,7 +20,7 @@ Run these commands, one by one:
     umount /dev/sda1
     mount /dev/sda1 /mnt
     mtd_write write /mnt/uboot256.img Bootloader
-    mtd_write write /mnt/firmware.bin Kernel
+    mtd_write write /mnt/openwrt-18.06.9-ramips-rt305x-a5-v11-squashfs-factory.bin Kernel
 
 Writing the firmware file takes some time, so be patient. After it is done, you can reboot:
 
@@ -97,3 +97,6 @@ Configure snapclient and hope for the best:
       
     nano /etc/default/snapclient
     SNAPCLIENT_OPTS="-d -h <snapserver-ip> -s 3"
+
+# Upgrading from older OpenWrt version
+Use the supplied sysupgrade file.
